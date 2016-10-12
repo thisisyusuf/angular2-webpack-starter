@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import '../../public/css/styles.css';
+import '../../public/css/styles2.css';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -7,6 +9,6 @@ import '../../public/css/styles.css';
 })
 export class AppComponent {
 	clickJquery(): void{
-		$( "img" ).fadeOut("slow");
+		$( "img" ).fadeToggle("slow");
 	}
 }

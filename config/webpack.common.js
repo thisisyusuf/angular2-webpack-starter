@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
+var postcssImport = require('postcss-import');
 
 module.exports = {
   entry: {
@@ -31,15 +32,19 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+        /*loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss-loader')*/
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap','postcss-loader')
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
+        /*loader: 'raw!postcss-loader'*/
         loader: 'raw'
       }
     ]
   },
+
+  /*postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],*/
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
