@@ -8,6 +8,13 @@ import '../../public/css/styles2.css';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+	imageLink:string;
+	
+	constructor(){
+		this.imageLink="../../public/images/angular.png";
+	}
+
 	clickJquery(): void{
 		$( "img" ).fadeToggle("slow");
 	}

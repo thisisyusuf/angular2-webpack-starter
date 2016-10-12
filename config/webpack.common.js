@@ -32,19 +32,22 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        /*loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss-loader')*/
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap','postcss-loader')
+        loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss-loader')
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        /*loader: 'raw!postcss-loader'*/
-        loader: 'raw'
+        loader: 'raw!postcss-loader'
       }
     ]
   },
 
-  /*postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],*/
+  postcss: function () {
+    return [
+      require('autoprefixer'),
+      require('lost')
+    ];
+  },
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
