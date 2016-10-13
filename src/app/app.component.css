@@ -6,8 +6,10 @@ main {
 
 section {
   lost-utility: clearfix;
+  lost-center: 80%;
 }
 
 div{
 	lost-column: 1/2;
+	
 }
