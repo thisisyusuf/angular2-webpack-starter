@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import '../../public/css/flashcard.css';
+
 
 @Component({
   selector: 'my-app',
