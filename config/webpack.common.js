@@ -2,7 +2,9 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
-var postcssImport = require('postcss-import');
+var autoprefixer = require('autoprefixer');
+var lost = require('lost');
+var rupture = require('rupture');
 
 module.exports = {
   entry: {
@@ -32,21 +34,34 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss-loader')
+        loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss-loader!stylus-loader')
+      },
+      {
+        test: /\.styl$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss-loader!stylus-loader')
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw!postcss-loader'
+      },
+      {
+        test: /\.styl$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw!postcss-loader!stylus-loader'
       }
     ]
   },
 
   postcss: function () {
     return [
-      require('autoprefixer'),
-      require('lost')
+      autoprefixer, lost
     ];
+  },
+
+  stylus: {
+    use: [rupture()]
   },
 
   plugins: [

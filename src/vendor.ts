@@ -11,3 +11,4 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 
 import '../public/css/flashcard.css';
+import '../public/css/stylus.styl';
