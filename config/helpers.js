@@ -5,4 +5,3 @@ function root(args) {
   return path.join.apply(path, [_root].concat(args));
 }
 exports.root = root;
-

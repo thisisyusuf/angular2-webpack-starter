@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
-var postcssImport = require('postcss-import');
 
 module.exports = {
   entry: {
@@ -12,7 +11,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.ts']
+    extensions: ['', '.ts', '.js']
   },
 
   module: {
@@ -32,21 +31,14 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss-loader')
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw!postcss-loader'
+        loader: 'raw'
       }
     ]
-  },
-
-  postcss: function () {
-    return [
-      require('autoprefixer'),
-      require('lost')
-    ];
   },
 
   plugins: [
@@ -56,13 +48,6 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
-
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      jquery: 'jquery'
     })
   ]
 };
-
